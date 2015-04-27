@@ -20,6 +20,16 @@ var PAPER_FORMATS = {
 		// Width and height should be w/o margins (1/2" less)
 		width: 8.0,
 		height: 10.5
+	},
+	LEGAL: {
+		title: 'Legal',
+		width: 8.0,
+		height: 13.5
+	},
+	LEDGER: {
+		title: 'Ledger',
+		width: 10.5,
+		height: 16.5
 	}
 };
 
@@ -54,7 +64,8 @@ function identifyCallback(err, result) {
 	var paperHeight = landscapeMode ? paperFormat.width : paperFormat.height;
 	var paperRatio = paperHeight / paperWidth;
 	console.log('Using paper format ' + paperFormat.title + ' with print area dimensions ' + paperFormat.width + 'x'
-		+ paperFormat.height + 'in (1:' + round(paperRatio, 3) + ')');
+		+ paperFormat.height + 'in (1:' + round(paperRatio, 3) + ') in '
+		+ (landscapeMode ? 'landscape' : 'portrait') + ' orientation');
 
 	var canvasWidth = paperWidth * argv.w - OVERLAP * (argv.w - 1);
 	var canvasHeight = paperHeight * argv.h - OVERLAP * (argv.h - 1);
